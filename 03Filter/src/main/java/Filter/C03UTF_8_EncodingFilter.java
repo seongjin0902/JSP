@@ -14,7 +14,7 @@ public class C03UTF_8_EncodingFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
 		
-		System.out.println("C03UTF_8_EncodingFilter Start^_^");
+		System.out.println("C03UTF_8_EncodingFilter Start ^_^");
 		
 //		 요청과 응답의 인코딩을 UTF-8로 설정
 		req.setCharacterEncoding("UTF-8");
@@ -23,7 +23,7 @@ public class C03UTF_8_EncodingFilter implements Filter {
 
 		chain.doFilter(req, resp);
 
-		System.out.println("C03UTF_8_EncodingFilter End^_^");
+		System.out.println("C03UTF_8_EncodingFilter End ^_^");
 
 	}
 

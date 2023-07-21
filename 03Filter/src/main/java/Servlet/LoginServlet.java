@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("doGet LoginServlet Start^_^");
+		System.out.println("doGet LoginServlet Start ^_^");
 
 		req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
 	}
@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("doPost LoginServlet Start^_^");
+		System.out.println("doPost LoginServlet Start ^_^");
 		
 
 		String userid = req.getParameter("userid");
@@ -44,10 +44,13 @@ public class LoginServlet extends HttpServlet{
 		{
 			session.setAttribute("ROLE", Role.ROLE_USER);
 		}
-		else if(userid.equals("damin"))
+		else if(userid.equals("admin"))
 		{
 			session.setAttribute("ROLE", Role.ROLE_ADMIN);
 		}
+		
+//		Redirect /main.do로 이동
+		resp.sendRedirect(req.getContextPath() + "/main.do");
 		
 		
 		
