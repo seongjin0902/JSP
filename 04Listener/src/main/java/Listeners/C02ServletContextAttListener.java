@@ -27,5 +27,6 @@ public class C02ServletContextAttListener implements ServletContextAttributeList
 		System.out.println("C02ServletContextAttListener attributeReplaced call ^_^");
 
 	}
+	
 
 }
