@@ -10,9 +10,10 @@ import Domain.Common.Service.LendServiceImpl;
 
 public class LendController implements SubController{
 
-	LendService service = LendServiceImpl.getInstance();
+	private LendService service= LendServiceImpl.getInstance();
 	
 	public LendController(){
+		service = LendServiceImpl.getInstance();
 	}
 	
 	// 1 Select , 2 Insert , 3 Update , 4 Delete 5 회원대여목록조회 

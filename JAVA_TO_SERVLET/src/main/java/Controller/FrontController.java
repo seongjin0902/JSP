@@ -20,6 +20,7 @@ import Controller.lend.LendSearchController;
 import Controller.lend.LendUpdateController;
 import Controller.member.MemberAddController;
 import Controller.member.MemberDeleteController;
+import Controller.member.MemberPageController;
 import Controller.member.MemberSearchController;
 import Controller.member.MemberUpdateController;
 import Controller.member.auth.LoginController;
@@ -57,7 +58,9 @@ public class FrontController extends HttpServlet {
 		
 		//member.auth
 		map.put(projectPath+"/login.do", new LoginController());		
-		map.put(projectPath+"/logout.do", new LogoutController());	
+		map.put(projectPath+"/logout.do", new LogoutController());
+		//mypage
+		map.put(projectPath+"/mypage.do", new MemberPageController());
 		
 		//main
 		map.put(projectPath+"/main.do",new MainController());
@@ -71,7 +74,7 @@ public class FrontController extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         
-		System.out.println("FrontController's service Uri : " + req.getRequestURI());
+		System.out.println("FrontController's service Uri : " + req.getRequestURI());// 
 		
 		SubController controller = map.get(req.getRequestURI());
 		controller.execute(req, resp);

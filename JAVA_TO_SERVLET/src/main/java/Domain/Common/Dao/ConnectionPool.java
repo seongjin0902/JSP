@@ -10,7 +10,7 @@ public abstract class ConnectionPool {
 	protected String pw;
 	protected String url;
 	
-	protected Connection conn;
+	protected static Connection conn;
 	protected PreparedStatement pstmt;
 	protected ResultSet rs;
 	
@@ -22,9 +22,12 @@ public abstract class ConnectionPool {
 		url="jdbc:mysql://localhost:3306/bookdb";
 		
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			if(conn==null) {
+				Class.forName("com.mysql.cj.jdbc.Driver");
 				conn=DriverManager.getConnection(url,id,pw);
-				System.out.println("Dao 추상클래스's Connection 생성");
+				System.out.println("ConnectionPool Connection 생성");
+			}
+				
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

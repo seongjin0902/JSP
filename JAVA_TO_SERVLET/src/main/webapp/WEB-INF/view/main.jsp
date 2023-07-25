@@ -12,6 +12,12 @@
 <h1>MAIN</h1>
 Account : ${ID} <br/>
 Role : ${ROLE} <br/>
+<hr />
+
+<!-- 나의 메뉴이동 -->
+<c:if test="${not empty ROLE}">
+	<a href=<c:url value="/mypage.do" /> >나의 메뉴로 이동</a></br>
+</c:if>
 
 <!-- 도서 조회하기 -->
 <hr>
