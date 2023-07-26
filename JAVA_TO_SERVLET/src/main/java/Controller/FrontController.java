@@ -70,9 +70,9 @@ public class FrontController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=UTF-8");
+//        req.setCharacterEncoding("UTF-8");
+//        resp.setCharacterEncoding("UTF-8");
+//        resp.setContentType("text/html; charset=UTF-8");
         
 		System.out.println("FrontController's service Uri : " + req.getRequestURI());// 
 		

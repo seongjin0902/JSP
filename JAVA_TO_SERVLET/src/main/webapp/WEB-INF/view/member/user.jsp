@@ -8,12 +8,56 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- google icon cdn -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<!-- google icon style -->
+<style>
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 100,
+  'GRAD' -25,
+  'opsz' 48;
+  font-size:2rem;
+}
+
+.alarm_block{
+	border:1px solid;
+	width:50px;
+	height:50px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	position:relative;
+}
+
+.alarm_block>.dotted_bg{
+	width:15px;
+	height:15px;
+	background-color:red;
+	border-radius:50%;
+	position:absolute;
+	left:22px;
+	top:12px;
+	
+	font-size:0.7rem;
+	color:white;
+	font-weight:700;
+	text-align:center;
+	line-height:15px;
+}
+</style>
 </head>
 <body>
 <h1>USER PAGE</h1>
 ID : ${ID}
 <br>
-
+<div class="alarm_block">
+	<span class=""></span>
+	<span class="material-symbols-outlined">
+	notifications
+	</span>
+</div>
 <h3>대여 내역 조회(비동기 요청)</h3>
 <button class=lend_btn class="width:500px; border : 1px solid;">조회하기</button>
 <div class="mylendList">
