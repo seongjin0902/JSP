@@ -120,6 +120,20 @@ public class LendServiceImpl implements LendService {
 		
 		return list;
 	}
+
+	@Override
+	public boolean removeMessage(HttpServletRequest req) throws Exception{
+		
+//		user메시지를 테이블 삭제
+		int cnt = msgDao.delete(req.getParameter("userid"));
+		
+//		session의 alarm관련된 속성 제거
+		HttpSession session = req.getSession();
+		session.removeAttribute("alarm_cnt");
+		session.removeAttribute("alarm_list");
+		
+		return cnt>0;
+	}
 	
 	
 	

@@ -31,7 +31,7 @@
 	position:relative;
 }
 
-.alarm_block>.dotted_bg{
+.alarm_block .dotted_bg{
 	width:15px;
 	height:15px;
 	background-color:red;
@@ -53,7 +53,11 @@
 ID : ${ID}
 <br>
 <div class="alarm_block">
-	<span class=""></span>
+	<c:if test="${not empty alarm_cnt }">
+		<a href="javascript:showMsg()">
+			<span class="dotted_bg">${alarm_cnt}</span>
+		</a>
+	</c:if>
 	<span class="material-symbols-outlined">
 	notifications
 	</span>
@@ -66,6 +70,20 @@ ID : ${ID}
 <!-- axios cdn -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+		function showMsg(){
+			const list = '${alarm_list}';
+			console.log("list ",list);
+			alert(list);
+			
+			const projectPath='${pageContext.request.contextPath}';
+			const ServerPort = '${pageContext.request.serverPort}';
+			const params = {params :{'userid' : '${ID}'}}
+			axios.post('http://localhost:'+ServerPort+projectPath+'/lend/messageRemove.do',null,params)
+			.then(response => {alert("성공");})
+			.catch(error => {})
+			
+		}
+		
 		
 		function formatDate(date) {
 		  const year = date.getFullYear();

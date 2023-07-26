@@ -48,7 +48,10 @@ public class FrontController extends HttpServlet {
 		map.put(projectPath+"/lend/search.do", new LendSearchController());
 		map.put(projectPath+"/lend/add.do", new LendAddController());
 		map.put(projectPath+"/lend/update.do", new LendUpdateController());
-		map.put(projectPath+"/lend/delete.do", new LendDeleteController());		
+		map.put(projectPath+"/lend/delete.do", new LendDeleteController());
+		
+		//lendMsg
+		map.put(projectPath+"/lend/messageRemove.do", new LendMessageRemoveController());
 		
 		//member
 		map.put(projectPath+"/member/search.do", new MemberSearchController());
