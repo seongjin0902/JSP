@@ -1,9 +1,5 @@
 package Domain.Common.Dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +15,13 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 		return instance;
 	}
 	
-	//id 게터
-	@Override
-	public String getId() {
-        return id;
-    }
+//	//id 게터
+//	@Override
+//	public String getId() {
+//        return id;
+//    }
 	
-	public MemberDaoImpl(){
+	private MemberDaoImpl(){
 
 	}
 	//쓸지 안쓸지 모른다. 고민중...
@@ -49,11 +45,12 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 		pstmt.setString(2, dto.getPw());
 		int result = pstmt.executeUpdate();
 		pstmt.close();
+		
 		return result;
 	}
 // 	회원 id/pw 조회
 	@Override
-	public List<MemberDto> select(String id, String pw) throws Exception{
+	public List<MemberDto> select() throws Exception{
 		List<MemberDto> list = new ArrayList();
 		MemberDto dto = null;
 		pstmt = conn.prepareStatement("select * from tbl_member");
@@ -71,6 +68,50 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 		
 		return list;
 	}
+	@Override
+	public MemberDto select(String id) throws Exception{
+		
+		MemberDto dto = null;
+		pstmt=conn.prepareStatement("select * from tbl_member where id=?");
+		pstmt.setString(1, id);
+		
+		rs=pstmt.executeQuery();
+		
+		try {
+		if(rs!=null&&rs.isBeforeFirst())
+		{
+			rs.next();
+			dto=new MemberDto();
+			dto.setId(rs.getString("id"));
+			dto.setPw(rs.getString("pw"));
+			dto.setUsername(rs.getString("username"));
+			dto.setRole(rs.getString("role"));	
+			rs.close();
+		}
+		}catch(Exception e) {
+			throw new Exception("이거 rs 없는거다..");
+		}
+		
+		pstmt.close();
+			
+		return dto;
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 //	회원 id/pw 삭제
 	@Override
 	public int delete(String id) throws Exception{
