@@ -25,7 +25,7 @@ public class InitServletContextListener implements ServletContextListener{
 		//-------------
 		if(ConnectionPool.conn==null) {
 			//create Connection
-			ConnectionPool.createConnection(serverIP.getHostAddress());
+//			ConnectionPool.createConnection(serverIP.getHostAddress());
 		}
 		
 		//--------------

@@ -24,11 +24,13 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 	//CRUD
 	@Override
 	public int insert(MemberDto dto) throws Exception{
-		pstmt=conn.prepareStatement("insert into tbl_member values(?,?,?,?)");
+		pstmt=conn.prepareStatement("insert into tbl_member values(?,?,?,?,?,'MEMBER')");
 		pstmt.setString(1, dto.getId());
 		pstmt.setString(2, dto.getPw());
 		pstmt.setString(3,dto.getUsername());
-		pstmt.setString(4, dto.getRole());
+		pstmt.setString(4, dto.getPhone());
+		pstmt.setString(5, dto.getBirth());
+		pstmt.setString(6, dto.getRole());
 		int result=pstmt.executeUpdate();
 		pstmt.close();
 		

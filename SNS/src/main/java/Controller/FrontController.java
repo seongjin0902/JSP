@@ -14,11 +14,6 @@ import Controller.book.BookAddController;
 import Controller.book.BookDeleteController;
 import Controller.book.BookSearchController;
 import Controller.book.BookUpdateController;
-import Controller.lend.LendAddController;
-import Controller.lend.LendDeleteController;
-import Controller.lend.LendMessageRemoveController;
-import Controller.lend.LendSearchController;
-import Controller.lend.LendUpdateController;
 import Controller.member.MemberAddController;
 import Controller.member.MemberDeleteController;
 import Controller.member.MemberPageController;
@@ -26,7 +21,6 @@ import Controller.member.MemberSearchController;
 import Controller.member.MemberUpdateController;
 import Controller.member.auth.LoginController;
 import Controller.member.auth.LogoutController;
-import Domain.Common.Dao.ConnectionPool;
 
 public class FrontController extends HttpServlet {
 
@@ -46,14 +40,10 @@ public class FrontController extends HttpServlet {
 		map.put(projectPath+"/book/update.do", new BookUpdateController());
 		map.put(projectPath+"/book/delete.do", new BookDeleteController());
 		
-		//lend
-		map.put(projectPath+"/lend/search.do", new LendSearchController());
-		map.put(projectPath+"/lend/add.do", new LendAddController());
-		map.put(projectPath+"/lend/update.do", new LendUpdateController());
-		map.put(projectPath+"/lend/delete.do", new LendDeleteController());
+
 		
-		//lendMsg
-		map.put(projectPath+"/lend/messageRemove.do", new LendMessageRemoveController());
+//		//lendMsg
+//		map.put(projectPath+"/lend/messageRemove.do", new LendMessageRemoveController());
 		
 		
 		//member
