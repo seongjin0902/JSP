@@ -1,9 +1,10 @@
-package Controller;
+package Controller.board;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import Controller.SubController;
 import Domain.Common.Dto.BoardDto;
 import Domain.Common.Service.BoardService;
 import Domain.Common.Service.BoardServiceImpl;

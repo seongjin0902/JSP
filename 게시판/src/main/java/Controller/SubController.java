@@ -1,8 +1,10 @@
 package Controller;
 
-import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public interface SubController {
-	// 1 Select , 2 Insert , 3 Update , 4 Delete
-		Map<String, Object> execute(int serviceNo, Map<String, Object> param);
+
+	 void execute(HttpServletRequest req, HttpServletResponse resp);
+
 }

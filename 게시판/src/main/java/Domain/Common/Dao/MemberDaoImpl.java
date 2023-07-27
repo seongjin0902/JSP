@@ -97,8 +97,7 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 		return dto;
 	}	
 	
-	
-	
+
 	
 	
 	
