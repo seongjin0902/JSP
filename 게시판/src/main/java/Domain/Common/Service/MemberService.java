@@ -1,3 +1,4 @@
+
 package Domain.Common.Service;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public interface MemberService {
 	boolean login(HttpServletRequest req) throws Exception;
 
 	//로그아웃
-	boolean logout(String id, String sid);
+	boolean logout(String id, String pw, String role);
 
 	//역할반환함수 
 	String getRole(String sid);

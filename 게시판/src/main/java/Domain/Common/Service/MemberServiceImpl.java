@@ -3,7 +3,9 @@ package Domain.Common.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import Domain.Common.Dao.MemberDao;
 import Domain.Common.Dao.MemberDaoImpl;
@@ -31,7 +33,7 @@ public class MemberServiceImpl implements MemberService {
 
 //	회원 가입하기
 	@Override
-	public boolean Join(MemberDto dto) throws Exception {
+	public boolean memberJoin(MemberDto dto) throws Exception {
 		int result = dao.insert(dto);
 		if (result > 0)
 			return true;
@@ -61,34 +63,33 @@ public class MemberServiceImpl implements MemberService {
 
 //	로그인
 	@Override
-	public Map<String, Object> login(String id, String pw) throws Exception {
-//		1. id/pw 체크 -> Dao 전달받은 id와 일치하는 정보를 가져와서 pw일치 확인
+	public boolean login(HttpServletRequest req) throws Exception {
+		
+		String id = (String)req.getParameter("id");
+		String pw = (String)req.getParameter("pw");
+		
+//		1 ID/PW 체크 ->Dao 전달받은 id와 일치하는 정보를 가져와서 Pw일치 확인
 		MemberDto dto = (MemberDto) dao.select(id, pw);
 		if (dto == null) {
-			System.out.println("[ERROR");
-			return null;
+			req.setAttribute("msg", "[ERROR] Login Fail... 아이디가 일치하지 않습니다");
+			return false;
 		}
 
 		if (!pw.equals(dto.getPw())) {
-			System.out.println("[ERROR]");
-			return null;
+			req.setAttribute("msg", "[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
+			return false;
 		}
-
-//		2. 해당 사용자에 대한 정보를(Session)을 MemberService에 저장
-		String role = UUID.randomUUID().toString();
-		Session session = new Session(dto.getId(), dto.getPw(), dto.getRole());
-		sessionMap.put(role, session);
-//		3. 세션에 대한 정보를 클라이언트가 접근할 수 있도록 하는 세션 구별 id(Session Cookie)전달
-		Map<String, Object> result = new HashMap();
-		result.put("id", id);
-		result.put("pw", pw);
-		result.put("role", role);
-		return result;
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("ID", id);
+		session.setAttribute("ROLE", dto.getRole());
+		
+		return true;
 	}
 
 //	로그아웃
 	@Override
-	public Boolean logout(String id, String pw, String role) {
+	public boolean logout(String id, String pw, String role) {
 
 		Session session = (Session) sessionMap.get(role);
 		if (id == null || pw == null) {
@@ -96,9 +97,9 @@ public class MemberServiceImpl implements MemberService {
 			return false;
 		}
 		sessionMap.remove(role);
-		return null;
-
+		return true;
 	}
+
 
 //	역할 반환 함수(회원인지 관리자인지)
 	@Override

@@ -26,7 +26,7 @@
 
 
 
-<form action="" method="post">
+<form action="login.do" method="post">
 	ID : <input name="id" /><br>
 	PW : <input name="pw" type="password"/><br>
 	PW-CHECK : <input name="pw-check" type="password"/><br>

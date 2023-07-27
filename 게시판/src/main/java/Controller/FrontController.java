@@ -15,6 +15,7 @@ import Controller.board.BoardDeleteController;
 import Controller.board.BoardSearchController;
 import Controller.board.BoardUpdateController;
 import Controller.member.MemberAddController;
+import Controller.member.MemberController;
 import Controller.member.MemberDeleteController;
 import Controller.member.MemberSearchController;
 import Controller.member.MemberUpdateController;
@@ -46,6 +47,9 @@ public class FrontController extends HttpServlet {
 
 //		main
 		map.put(projectPath + "/main.do", new MainController());
+		
+//	     join
+	    map.put(projectPath + "/join.do", new MemberController());
 	}
 
 	@Override
