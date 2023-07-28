@@ -1,7 +1,7 @@
 package Domain.Common.Dto;
 
 
-public class BookDto{
+public class BoardDto{
 	private int bookcode;
 	private String bookname;
 	private String publisher;
@@ -9,13 +9,13 @@ public class BookDto{
 	//getter and setter
 	//생성자
 	//toString재정의
-	public BookDto() {}
+	public BoardDto() {}
 	@Override
 	public String toString() {
 		return "BookDto [bookcode=" + bookcode + ", bookname=" + bookname + ", publisher=" + publisher + ", isbn="
 				+ isbn + "]";
 	}
-	public BookDto(int bookcode, String bookname, String publisher, String isbn) {
+	public BoardDto(int bookcode, String bookname, String publisher, String isbn) {
 		super();
 		this.bookcode = bookcode;
 		this.bookname = bookname;

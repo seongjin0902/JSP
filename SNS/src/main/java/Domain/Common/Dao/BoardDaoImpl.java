@@ -3,28 +3,28 @@ package Domain.Common.Dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import Domain.Common.Dto.BookDto;
+import Domain.Common.Dto.BoardDto;
  
 
-public class BookDaoImpl extends ConnectionPool implements BookDao {
+public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 	
 	//싱글톤 패턴
-	private static BookDao instance; 
-	public static BookDao getInstance() {
+	private static BoardDao instance; 
+	public static BoardDao getInstance() {
 		if(instance==null)
-			instance=new BookDaoImpl();
+			instance=new BoardDaoImpl();
 		return instance;
 	}
 	//
 	
-	private BookDaoImpl(){
+	private BoardDaoImpl(){
 		
 	}
 	
 	
 	//CRUD
 	@Override
-	public int insert(BookDto dto) throws Exception{
+	public int insert(BoardDto dto) throws Exception{
 	 
 		pstmt=conn.prepareStatement("insert into tbl_book values(?,?,?,?)");
 		pstmt.setInt(1, dto.getBookcode());
@@ -39,15 +39,15 @@ public class BookDaoImpl extends ConnectionPool implements BookDao {
 	}
 	
 	@Override
-	public List<BookDto> select() throws Exception{
-		List<BookDto> list = new ArrayList();
-		BookDto dto=null;
+	public List<BoardDto> select() throws Exception{
+		List<BoardDto> list = new ArrayList();
+		BoardDto dto=null;
 		pstmt=conn.prepareStatement("select * from tbl_book");
 		rs=pstmt.executeQuery();
 		if(rs!=null)
 		{
 			while(rs.next()) {
-				dto=new BookDto();
+				dto=new BoardDto();
 				dto.setBookcode(rs.getInt("bookcode"));
 				dto.setBookname(rs.getString("bookname"));
 				dto.setPublisher(rs.getString("publisher"));
@@ -61,16 +61,16 @@ public class BookDaoImpl extends ConnectionPool implements BookDao {
 		return list;
 	}
 	@Override
-	public BookDto select(int bookcode) throws Exception{
+	public BoardDto select(int bookcode) throws Exception{
 		 
-		BookDto dto=null;
+		BoardDto dto=null;
 		pstmt=conn.prepareStatement("select * from tbl_book where bookcode=?");
 		pstmt.setInt(1, bookcode);
 		rs=pstmt.executeQuery();
 		if(rs!=null&& rs.isBeforeFirst())
 		{
 				rs.next();
-				dto=new BookDto();
+				dto=new BoardDto();
 				dto.setBookcode(rs.getInt("bookcode"));
 				dto.setBookname(rs.getString("bookname"));
 				dto.setPublisher(rs.getString("publisher"));
@@ -84,15 +84,15 @@ public class BookDaoImpl extends ConnectionPool implements BookDao {
 	
 	
 	@Override
-	public List<BookDto> select(String keyword){
+	public List<BoardDto> select(String keyword){
 		return null;
 	}
 	@Override
-	public List<BookDto> select(String keyfield,String keyword){
+	public List<BoardDto> select(String keyfield,String keyword){
 		return null;
 	}
 	@Override
-	public int update(BookDto dto) throws Exception{
+	public int update(BoardDto dto) throws Exception{
 		pstmt=conn.prepareStatement("update tbl_book set bookname=?,publisher=?,isbn=? where bookcode=?");
 		pstmt.setString(1,dto.getBookname() );
 		pstmt.setString(2,dto.getPublisher() );

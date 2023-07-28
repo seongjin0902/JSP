@@ -1,15 +1,15 @@
-package Controller.book;
+package Controller.borad;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Controller.SubController;
-import Domain.Common.Service.BookService;
-import Domain.Common.Service.BookServiceImpl;
+import Domain.Common.Service.BoardService;
+import Domain.Common.Service.BoardServiceImpl;
 
-public class BookAddController implements SubController{
+public class BoardAddController implements SubController{
 
-	private BookService service= BookServiceImpl.getInstance();
+	private BoardService service= BoardServiceImpl.getInstance();
 
 	
 	@Override

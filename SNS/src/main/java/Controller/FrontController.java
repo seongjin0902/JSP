@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Controller.book.BookAddController;
-import Controller.book.BookDeleteController;
-import Controller.book.BookSearchController;
-import Controller.book.BookUpdateController;
+import Controller.borad.BoardAddController;
+import Controller.borad.BoardDeleteController;
+import Controller.borad.BoardSearchController;
+import Controller.borad.BoardUpdateController;
 import Controller.member.MemberAddController;
 import Controller.member.MemberDeleteController;
 import Controller.member.MemberPageController;
@@ -35,10 +35,10 @@ public class FrontController extends HttpServlet {
 		String projectPath=config.getServletContext().getContextPath(); // /JAVA_TO_SERVLET/
 		
 		//book
-		map.put(projectPath+"/book/search.do", new BookSearchController());
-		map.put(projectPath+"/book/add.do", new BookAddController());
-		map.put(projectPath+"/book/update.do", new BookUpdateController());
-		map.put(projectPath+"/book/delete.do", new BookDeleteController());
+		map.put(projectPath+"/book/search.do", new BoardSearchController());
+		map.put(projectPath+"/book/add.do", new BoardAddController());
+		map.put(projectPath+"/book/update.do", new BoardUpdateController());
+		map.put(projectPath+"/book/delete.do", new BoardDeleteController());
 		
 
 		

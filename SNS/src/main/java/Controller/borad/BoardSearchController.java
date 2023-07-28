@@ -1,4 +1,4 @@
-package Controller.book;
+package Controller.borad;
 
 import java.io.PrintWriter;
 import java.util.List;
@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Controller.SubController;
-import Domain.Common.Dto.BookDto;
-import Domain.Common.Service.BookService;
-import Domain.Common.Service.BookServiceImpl;
+import Domain.Common.Dto.BoardDto;
+import Domain.Common.Service.BoardService;
+import Domain.Common.Service.BoardServiceImpl;
 
-public class BookSearchController implements SubController {
+public class BoardSearchController implements SubController {
 
-	private BookService service = BookServiceImpl.getInstance();
+	private BoardService service = BoardServiceImpl.getInstance();
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -26,7 +26,7 @@ public class BookSearchController implements SubController {
 		
 		
 		// 3 서비스 실행(서비스모듈작업 이후 처리)
-		List<BookDto> list = null;
+		List<BoardDto> list = null;
 		try {
 		
 			list = service.getAllBook(req);
