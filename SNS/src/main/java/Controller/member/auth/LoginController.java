@@ -7,12 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Controller.SubController;
+import Domain.Common.Dao.ConnectionPool;
 import Domain.Common.Service.MemberService;
 import Domain.Common.Service.MemberServiceImpl;
 
 public class LoginController  implements SubController{
 
 	private MemberService service= MemberServiceImpl.getInstance();
+	public ConnectionPool connectionPool = new ConnectionPool();
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -50,8 +52,8 @@ public class LoginController  implements SubController{
 			}
 			//3 서비스 실행
 			boolean isLogin=false;
-		
 			isLogin=service.login(req);
+			System.out.println("isLogin 실행: " + isLogin );
 		
 		
 			//4 View로 전달 
@@ -73,5 +75,6 @@ public class LoginController  implements SubController{
 		
 			
 	}
+	
 
 }

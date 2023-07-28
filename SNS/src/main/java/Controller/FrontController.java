@@ -25,14 +25,17 @@ import Controller.member.auth.LogoutController;
 
 public class FrontController extends HttpServlet {
 
-    private Map<String, SubController> map = new HashMap<>();
+	private Map<String, SubController> map = new HashMap();
+	// 초기값 설정
+	// 사용자요구사항API Controller에 맞게 저장
+	// /req_bookinfo에대한 요구사항은 BookController 전달
 
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-
-        String projectPath = config.getServletContext().getContextPath(); // /JAVA_TO_SERVLET/
-
-        // Board
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		
+		String projectPath=config.getServletContext().getContextPath(); // /JAVA_TO_SERVLET/
+		
+		 // Board
         map.put(projectPath + "/board/search.do", new BoardSearchController());
         map.put(projectPath + "/board/add.do", new BoardAddController());
         map.put(projectPath + "/board/update.do", new BoardUpdateController());
@@ -56,18 +59,25 @@ public class FrontController extends HttpServlet {
         
         //Join
         map.put(projectPath + "/register.do", new JoinController());
-    }
+		
 
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("FrontController's service Uri: " + req.getRequestURI());
+	}
 
-        SubController controller = map.get(req.getRequestURI());
-        if (controller == null) {
-            resp.sendError(HttpServletResponse.SC_NOT_FOUND); // Return 404 Not Found if no controller is found
-            return;
-        }
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+//        req.setCharacterEncoding("UTF-8");
+//        resp.setCharacterEncoding("UTF-8");
+//        resp.setContentType("text/html; charset=UTF-8");
+        
+		System.out.println("FrontController's service Uri : " + req.getRequestURI());// 
+		
+		SubController controller = map.get(req.getRequestURI());
+		controller.execute(req, resp);
 
-        controller.execute(req, resp);
-    }
+		
+	}
+
+
+
 }

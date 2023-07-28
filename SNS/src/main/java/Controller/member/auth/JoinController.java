@@ -30,7 +30,7 @@ public class JoinController extends HttpServlet implements SubController {
         String birth = req.getParameter("birth");
 
         if (!pw.equals(pwCheck)) {
-            req.setAttribute("msg", "비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+            req.setAttribute("msg", "패스워드가 일치하지 않습니다.");
             req.getRequestDispatcher("/join.jsp").forward(req, resp);
             return;
         }
@@ -48,15 +48,15 @@ public class JoinController extends HttpServlet implements SubController {
             int result = memberDao.insert(newMember);
             if (result > 0) {
                 req.setAttribute("msg", "회원 가입이 완료되었습니다.");
-                req.getRequestDispatcher("/join.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/view/member/auth/login.jsp").forward(req, resp);
             } else {
                 req.setAttribute("msg", "회원 가입에 실패했습니다.");
-                req.getRequestDispatcher("/join.jsp").forward(req, resp);
+                req.getRequestDispatcher("join.jsp").forward(req, resp);
             }
         } catch (Exception e) {
             e.printStackTrace();
             req.setAttribute("msg", "오류가 발생하여 회원 가입에 실패했습니다.");
-            req.getRequestDispatcher("/join.jsp").forward(req, resp);
+            req.getRequestDispatcher("join.jsp").forward(req, resp);
         }
     }
 
