@@ -31,7 +31,6 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 		pstmt.setString(4, dto.getRole());
 		int result=pstmt.executeUpdate();
 		pstmt.close();
-		
 		return result;
 		
 	}
