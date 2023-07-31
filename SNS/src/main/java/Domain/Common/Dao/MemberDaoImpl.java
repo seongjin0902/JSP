@@ -16,7 +16,7 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 		return instance;
 	}
 	 
-	private MemberDaoImpl(){
+	public MemberDaoImpl(){
 		
 	}
 	
