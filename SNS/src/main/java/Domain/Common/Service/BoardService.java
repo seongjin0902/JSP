@@ -17,7 +17,7 @@ public interface BoardService {
 	int boardAdd(BoardDto dto) throws Exception;
 
 	// 글 수정하기
-	 void boardUpdate(BoardDto dto, String sid, int number) throws Exception;
+	boolean boardUpdate(BoardDto dto, String sid, int number) throws Exception;
 
 	//글 삭제하기
 	// 이거 선생님말듣고 수정   0704 박영민 13:17
