@@ -17,20 +17,22 @@ public interface BoardService {
 	int boardAdd(BoardDto dto) throws Exception;
 
 	// 글 수정하기
-	boolean boardUpdate(BoardDto dto, String sid, int number) throws Exception;
+	 void boardUpdate(BoardDto dto, String sid, int number) throws Exception;
 
 	//글 삭제하기
 	// 이거 선생님말듣고 수정   0704 박영민 13:17
 	boolean boardDelete(String id) throws Exception;
 
 	//글 id로 조회
-	List<BoardDto> boardsearch_id(String id) throws Exception;
+	List<BoardDto> boardsearch_id(String keyword) throws Exception;
 
 	//글 title로 조회
 	boolean boardsearch_title(BoardDto dto) throws Exception;
 
 	//내가 쓴 글 조회
-	boolean boardsearch_mine(BoardDto dto) throws Exception;
+	List<BoardDto> boardsearch_mine(String id) throws Exception;
+
+
 
 //	//댓글 조회
 //	List<CommentDto> Commentselect(CommentDto dto) throws Exception;

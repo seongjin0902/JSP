@@ -10,11 +10,13 @@ import Controller.SubController;
 import Domain.Common.Dto.BoardDto;
 import Domain.Common.Service.BoardService;
 import Domain.Common.Service.BoardServiceImpl;
+import Domain.Common.Service.MemberService;
+import Domain.Common.Service.MemberServiceImpl;
 
 public class BoardAddController implements SubController {
 
-	BoardService service = BoardServiceImpl.getInstance();
-
+	private BoardService service = BoardServiceImpl.getInstance();
+	
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("BoardAddController execute");
@@ -23,7 +25,7 @@ public class BoardAddController implements SubController {
 		if (req.getMethod().equals("GET")) {
 			try {
 				System.out.println("get req들어옴");
-				req.getRequestDispatcher("/WEB-INF/view/write.jsp").forward(req, resp);
+				req.getRequestDispatcher("/add.jsp").forward(req, resp);
 				return;
 			} catch (ServletException e) {
 				// TODO Auto-generated catch block
@@ -34,51 +36,41 @@ public class BoardAddController implements SubController {
 			}
 			return;
 		}
-
-		// -------------------------------------------------------------------
-		// -------------------------------------------------------------------
+		System.out.println("");
 		// post 요청 처리
-		if (req.getMethod().equals("POST")) {
-			
-			String content = req.getParameter("content");
-			String userId = (String) req.getSession().getAttribute("userId");
-			
-			System.out.println("BoardAddController paramtes : " + content + userId);
-			
-			try {
-				// 2 입력값 검증
-				if (content.isEmpty()) {
-					System.out.println("[ERROR] Data Validation Check Error!");
-					req.setAttribute("msg", "[ERROR] 내용을 입력해주세요.");
-					req.getRequestDispatcher("/WEB-INF/view/write.jsp").forward(req, resp);
-					return;
-				}
-				
+		String title = (String) req.getParameter("title");
+		String contents = (String) req.getParameter("contents");
+		System.out.println("BoardAddController paramtes : " + title + " " + contents);
 
-
-				// BoardDto 객체 생성하여 title과 contents를 담음
-				BoardDto dto = new BoardDto();
-				dto.setContent(content);
-				 dto.setId(userId);
-				System.out.println(content);
-				System.out.println(userId);
-
-				// 3 서비스 실행 - BoardService를 활용하여 데이터 삽입
-				int isInserted = service.boardAdd(dto);
-
-				if (isInserted > 0) {
-					// 게시물 등록 성공 시 메인 페이지로 이동 - Redirect
-//					resp.sendRedirect(req.getContextPath() + "/WEB-INF/view/main.jsp");
-					req.getRequestDispatcher("/WEB-INF/view/main.jsp").forward(req, resp);
-				} else {
-					// 게시물 등록 실패 시 오류 메시지와 함께 글 작성 페이지로 이동 - Forward
-					req.setAttribute("msg", "게시물 등록에 실패했습니다.");
-					req.getRequestDispatcher("/WEB-INF/view/write.jsp").forward(req, resp);
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
+		try {
+			// 2 입력값 검증
+			if (title.isEmpty() || contents.isEmpty()) {
+				System.out.println("[ERROR] Data Validation Check Error!");
+				req.setAttribute("msg", "[ERROR] 제목이나 내용을 입력해주세요.");
+				req.getRequestDispatcher("/add.jsp").forward(req, resp);
+				return;
 			}
+
+			 // BoardDto 객체 생성하여 title과 contents를 담음
+	        BoardDto dto = new BoardDto();
+//	        dto.setTitle(title);
+	        dto.setContents(contents);
+	        System.out.println(title+" "+contents);
+
+	        // 3 서비스 실행 - BoardService를 활용하여 데이터 삽입
+	        int isInserted = service.boardAdd(dto);
+
+	        if (isInserted>0) {
+	            // 게시물 등록 성공 시 메인 페이지로 이동 - Redirect
+	            resp.sendRedirect(req.getContextPath() + "/main.jsp");
+	        } else {
+	            // 게시물 등록 실패 시 오류 메시지와 함께 글 작성 페이지로 이동 - Forward
+	            req.setAttribute("msg", "게시물 등록에 실패했습니다.");
+	            req.getRequestDispatcher("/add.jsp").forward(req, resp);
+	        }
+
+		} catch (Exception e) {
+            e.printStackTrace();
 		}
 	}
 

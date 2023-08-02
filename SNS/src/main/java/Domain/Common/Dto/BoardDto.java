@@ -1,44 +1,32 @@
 package Domain.Common.Dto;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 public class BoardDto {
-	private int number; // 게시물 번호
-	private String id; // userid
-	private String content; // 글내용
-	private String date; // 작성날짜
-	private int hits; // 조회수
-	private int like; // 좋아요
-
-//	디폴트 생성자
-	public BoardDto() {
-		System.out.println("여러분 보드Dto 들어옵니다~");
-	}
-
+	private int number; 		//게시물 번호
+	private String id;  		//userid 
+	private String contents;	//글내용
+	private String date;		//작성날짜
+	private int hits;			//조회수
+	private int like;
 	
-
+//	디폴트 생성자
+	public BoardDto() {}
+	
 //	모든 인자를 받는 생성자
-	public BoardDto(int number, String id, String title, String content, String date, int hits, int like) {
+	public BoardDto(int number, String id, String contents, String date, int hits, int like) {
 		this.number = number;
 		this.id = id;
-		this.content = content;
+		this.contents = contents;
 		this.date = date;
 		this.hits = hits;
 		this.like = like;
 	}
 
-//	toString 재정의
 	@Override
 	public String toString() {
-		return "ContentsDto [number=" + number + ", id=" + id + "contents=" + content + ", date=" + date + ", hits="
-				+ hits + ", like="+ like +"]";
+		return "BoardDto [number=" + number + ", id=" + id + ", contents=" + contents + ", date=" + date + ", hits="
+				+ hits + ", like=" + like + "]";
 	}
 
-//	getter and setter
 	public int getNumber() {
 		return number;
 	}
@@ -55,12 +43,12 @@ public class BoardDto {
 		this.id = id;
 	}
 
-	public String getContent() {
-		return content;
+	public String getContents() {
+		return contents;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 
 	public String getDate() {
@@ -78,13 +66,16 @@ public class BoardDto {
 	public void setHits(int hits) {
 		this.hits = hits;
 	}
-	
-	public int getlike() {
+
+	public int getLike() {
 		return like;
 	}
-	
-	public void setlike(int like) {
+
+	public void setLike(int like) {
 		this.like = like;
 	}
 
+
+	
+	
 }
